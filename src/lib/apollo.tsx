@@ -1,11 +1,13 @@
 import { useMemo } from 'react';
 import merge from 'deepmerge';
 import cookie from 'cookie';
+import Cookies from 'js-cookie'
 import type { GetServerSidePropsContext } from 'next';
 import type { IncomingMessage } from 'http';
 import type { NormalizedCacheObject } from '@apollo/client';
-import { ApolloClient, HttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, HttpLink, InMemoryCache, ApolloLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { RestLink } from 'apollo-link-rest';
 import isEqual from 'lodash.isequal';
 
 interface PageProps {
@@ -43,9 +45,39 @@ const createApolloClient = (ctx?: GetServerSidePropsContext) => {
     };
   });
 
+  const authRestLink = new ApolloLink((operation, forward) => {
+    operation.setContext(({headers}) => {
+      const token = getToken(ctx?.req);
+      return {
+        headers: {
+          ...headers,
+          Accept: "application/json",
+          Authorization: token ? `Bearer ${token}` : ''
+        }
+      };
+    });
+    return forward(operation).map(result => {
+      const { restResponses } = operation.getContext();
+      const authTokenResponse = restResponses.find(res => res.headers.has("Authorization"));
+      // You might also filter on res.url to find the response of a specific API call
+      if (authTokenResponse) {
+        Cookies.set(COOKIES_TOKEN_NAME, authTokenResponse.headers.get("Authorization"))
+      }
+      return result;
+    });
+  });
+
+  const restLink = new RestLink({ 
+    uri: "https://swapi.dev/api/"
+  });
+
   return new ApolloClient({
     ssrMode: typeof window === 'undefined',
-    link: authLink.concat(httpLink),
+    link: ApolloLink.split(
+      operation => operation.getContext().clientName === 'rest',
+      ApolloLink.from([authRestLink, restLink]),
+      authLink.concat(httpLink),
+    ),
     cache: new InMemoryCache(),
   });
 };
