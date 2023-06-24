@@ -8,7 +8,9 @@
     "start": "next start",
     "test": "jest",
     "codegen": "env-cmd graphql-codegen",
-    "release": "standard-version"
+    "release": "standard-version",
+    "release:alpha": "standard-version --prerelease alpha --no-verify",
+    "release:minor": "standard-version --release-as minor --no-verify"
   },
   "dependencies": {
     "@apollo/client": "3.6.9",
