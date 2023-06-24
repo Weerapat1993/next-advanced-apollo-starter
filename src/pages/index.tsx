@@ -17,6 +17,9 @@ const IndexPage: NextPage = () => {
           <li>
             <Link href="/users-ssr">Server-Side Rendering</Link>
           </li>
+          <li>
+            <Link href="/people">People</Link>
+          </li>
         </ul>
       </nav>
     </section>
