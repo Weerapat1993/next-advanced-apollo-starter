@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0-alpha.0](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.1.0...v1.2.0-alpha.0) (2023-06-25)
+
+
+### Features
+
+* **NEX-4:** Add Netlify Config ([282f656](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/282f65639f2ab3b07749a9059412b73f82ebdaa6))
+
 ## [1.1.0](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.0.3-alpha.0...v1.1.0) (2023-06-24)
 
 
