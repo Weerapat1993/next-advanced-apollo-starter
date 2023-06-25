@@ -41,8 +41,8 @@ jobs:
 
       - name: Start Bump Version
         run: |
-          git config --global user.email "weerapat.t@mungmee.com"
-          git config --global user.name "Top-Weerapat-Mungmee"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           npm run release:${{ github.event.inputs.version }}
           git push --follow-tags origin master
   
