@@ -1,0 +1,64 @@
+name: Build Version
+
+on:
+  push:
+    branches:
+      - "master"
+  workflow_dispatch:
+    inputs:
+      version:
+        type: choice
+        description: What version you want?
+        options:
+          - alpha
+          - patch
+          - minor
+          - major
+
+jobs:
+  build-test-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Version
+        run: echo "Run ${{ github.event.inputs.version }} Version."
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "12.13.0"
+
+      - name: Cache packages
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            ./node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: ${{ runner.os }}-node-
+      - name: Install dependencies
+        run: npm install
+
+      - name: Cache Next.js build cache
+        id: cache-build
+        uses: actions/cache@v2
+        with:
+          path: |
+            .next/cache
+            .next/server
+          key: ${{ runner.os }}-next-build-${{ hashFiles('**/.next/**') }}
+          restore-keys: |
+            ${{ runner.os }}-next-build-
+
+      - name: Start Bump Version
+        run: npm run release:${{ github.event.inputs.version }}
+
+      - name: Push New Version
+        run: git push --follow-tags origin master
+
+      - name: Build
+        run: npm run build
+  
