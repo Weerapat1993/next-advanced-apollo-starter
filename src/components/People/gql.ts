@@ -1,9 +1,11 @@
 import { gql } from '@apollo/client';
 
 export const PEOPLE_LIST = gql`
-  query peoples {
-    peoples @rest(type: "People", path: "people") {
+  query getPeoples($page: number!) {
+    getPeoples(page: $page) @rest(type: "People", path: "people?page={args.page}") {
       count
+      next
+      previous
       results
     }
   }
