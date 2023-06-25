@@ -1,15 +1,20 @@
 import { useQuery } from '@apollo/client';
+import { useRouter } from 'next/router'
 import Link from 'next/link'
 import { PEOPLE_LIST } from './gql';
 
 export const People = () => {
-  const { data, loading } = useQuery(PEOPLE_LIST, { context: { clientName: 'rest' } });
+  const router = useRouter()
+  const page = +router?.query?.page || 1
+  const { data, loading } = useQuery(PEOPLE_LIST, { variables: { page }, context: { clientName: 'rest' } });
 
   if (loading) {
     return <div>Peoples loading...</div>;
   }
-  const peoples = data?.peoples?.results || []
-  const count = data?.peoples?.count || 0
+  const peoples = data?.getPeoples?.results || []
+  const count = data?.getPeoples?.count || 0
+  const isNext = Boolean(data?.getPeoples?.next)
+  const isPrev = Boolean(data?.getPeoples?.previous)
   return (
     <div>
       {count && <div>Count : {count}</div>}
@@ -24,6 +29,16 @@ export const People = () => {
           )
         })}
       </ul>
+      {isPrev && (
+        <button onClick={() => router.push(`/people?page=${page-1}`)}>
+          Previous
+        </button>
+      )}
+      {isNext && (
+        <button onClick={() => router.push(`/people?page=${page+1}`)}>
+          Next
+        </button>
+      )}
       {/* <pre>{JSON.stringify(data, null, '  ')}</pre> */}
     </div>
   );
