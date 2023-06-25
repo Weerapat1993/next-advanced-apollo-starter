@@ -1,9 +1,6 @@
 name: Build Version
 
 on:
-  push:
-    branches:
-      - "master"
   workflow_dispatch:
     inputs:
       version:
@@ -42,23 +39,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Cache Next.js build cache
-        id: cache-build
-        uses: actions/cache@v2
-        with:
-          path: |
-            .next/cache
-            .next/server
-          key: ${{ runner.os }}-next-build-${{ hashFiles('**/.next/**') }}
-          restore-keys: |
-            ${{ runner.os }}-next-build-
+      - name: Run Unit Test
+        run: npm run test
 
       - name: Start Bump Version
         run: npm run release:${{ github.event.inputs.version }}
 
       - name: Push New Version
         run: git push --follow-tags origin master
-
-      - name: Build
-        run: npm run build
   
