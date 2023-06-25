@@ -40,8 +40,9 @@ jobs:
         run: npm ci
 
       - name: Start Bump Version
-        run: npm run release:${{ github.event.inputs.version }}
-
-      - name: Push New Version
-        run: git push --follow-tags origin master
+        run: |
+          git config --global user.email "weerapat.t@mungmee.com"
+          git config --global user.name "Top-Weerapat-Mungmee"
+          npm run release:${{ github.event.inputs.version }}
+          git push --follow-tags origin master
   
