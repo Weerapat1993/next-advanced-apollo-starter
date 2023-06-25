@@ -6,8 +6,7 @@ USER node
 WORKDIR /home/node
 
 COPY --chown=node:node package*.json ./
-COPY --chown=node:node yarn.lock ./
-RUN yarn
+RUN npm ci
 
 COPY --chown=node:node . .
 
@@ -16,6 +15,6 @@ ARG APP_ENV=production
 
 ENV NODE_ENV ${NODE_ENV}
 
-RUN ["yarn", "build"]
+RUN ["npm", "run", "build"]
 
-CMD ["yarn", "start"]
+CMD ["npm", "run", "start"]
