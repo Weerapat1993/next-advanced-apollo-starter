@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0-alpha.2](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.2.0-alpha.1...v1.2.0-alpha.2) (2023-06-25)
+
+
+### Features
+
+* **NEX-5:** Add Github Actions Input ([d790710](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/d790710e2010e0c8432e317fa7fe733a47c23cb4))
+
+
+### Bug Fixes
+
+* **NEX-5:** Fix Github Actions ([83ca7f9](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/83ca7f9ed6a1ccf271e1662ed1156cf9a5b70c8f))
+* **NEX-5:** Remove run test in Github Actions ([bd17770](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/bd17770dfcf851cfc114e3b79778e403bbc7ffd5))
+* **NEX-5:** Remove run test in Github Actions (2) ([0624f30](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/0624f300110aabb832403337cf8833268ef8f29d))
+* **NEX-5:** Remove run test in Github Actions (3) ([ac27fba](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/ac27fba9f7313e5c62f0fb8ad8092eeeada19e39))
+
 ## [1.2.0-alpha.1](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.2.0-alpha.0...v1.2.0-alpha.1) (2023-06-25)
 
 ## [1.2.0-alpha.0](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.1.0...v1.2.0-alpha.0) (2023-06-25)
