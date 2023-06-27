@@ -12,12 +12,6 @@ on:
           - minor
           - major
 
-env:
-  NODE_ENV: "production"
-  NEXT_PUBLIC_ENV: ${{ vars.NEXT_PUBLIC_ENV }}
-  NEXT_PUBLIC_GRAPHQL_URI: ${{ vars.NEXT_PUBLIC_GRAPHQL_URI }}
-  NEXT_PUBLIC_REST_API_URI: ${{ vars.NEXT_PUBLIC_REST_API_URI }}
-
 permissions:
   contents: write
   id-token: write # to enable use of OIDC for npm provenance
@@ -25,9 +19,6 @@ permissions:
 jobs:
   build-test-and-release:
     runs-on: ubuntu-latest
-
-    environment:
-      name: "test"
 
     steps:
       - name: Run Version
@@ -57,7 +48,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          git config --global user.email "${{ vars.ACTIONS_BOT_EMAIL }}"
-          git config --global user.name "${{ vars.ACTIONS_BOT_NAME }}"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
           npm run release:${{ github.event.inputs.version }}
           git push --follow-tags origin master
