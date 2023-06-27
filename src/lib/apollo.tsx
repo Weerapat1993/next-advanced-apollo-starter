@@ -68,7 +68,7 @@ const createApolloClient = (ctx?: GetServerSidePropsContext) => {
   });
 
   const restLink = new RestLink({ 
-    uri: "https://swapi.dev/api/"
+    uri: process.env.NEXT_PUBLIC_REST_API_URI
   });
 
   return new ApolloClient({
