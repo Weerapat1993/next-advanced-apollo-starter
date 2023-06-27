@@ -39,9 +39,15 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start Bump Version
-        run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          npm run release:${{ github.event.inputs.version }}
+      # - name: Start Bump Version
+      #   run: |
+      #     git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+      #     git config --global user.name "github-actions[bot]"
+      #     npm run release:${{ github.event.inputs.version }}
+
+      - name: Semantic Release
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main')
+        uses: cycjimmy/semantic-release-action@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
