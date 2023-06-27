@@ -41,7 +41,7 @@ jobs:
 
       - name: Start Bump Version
         run: |
-          git checkout -b master
+          git checkout master
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           npm run release:${{ github.event.inputs.version }}
