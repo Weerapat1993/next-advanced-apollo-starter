@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-alpha.7 (2023-07-04)
+
+
+### Features
+
+* **NEX-7:** Add Line Webhooks ([#12](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/12)) ([aa624e6](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/aa624e68a4c5373418ce02da8725d4684d55ea92))
+
 ## 1.2.0-alpha.6 (2023-07-03)
 
 ## 1.2.0-alpha.5 (2023-06-27)
