@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-alpha.8 (2023-07-04)
+
+
+### Features
+
+* **NEX-7:** Refactor Code API ([#13](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/13)) ([041d63e](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/041d63e3b9530c87b7fbe8432e6bb4a37c841264))
+
 ## 1.2.0-alpha.7 (2023-07-04)
 
 
