@@ -6,6 +6,8 @@ next-advanced-apollo-starter
   Advanced and minimalistic Next.js and Apollo starter
 </h4>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/add7471f-588c-4417-a8a6-8a0e8600b836/deploy-status)](https://app.netlify.com/sites/nextjs-apollo-mungmee/deploys)
+
 <p align="center">
   <a href="#whats-included">What's included</a> •
   <a href="#getting-started">Getting Started</a> •
