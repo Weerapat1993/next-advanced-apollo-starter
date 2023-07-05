@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-alpha.9 (2023-07-05)
+
+
+### Features
+
+* **NEX-8:** try to use tsconfig.json path ([#14](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/14)) ([be98965](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/be989655e8f800379b59dbba1ab30a09de0a473b))
+
 ## 1.2.0-alpha.8 (2023-07-04)
 
 
