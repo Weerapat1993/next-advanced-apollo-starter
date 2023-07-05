@@ -3,9 +3,9 @@ import serverless from 'serverless-http';
 import express, { Router } from 'express';
 import type { Application, Request, Response, NextFunction } from 'express';
 import packageJson from '../../package.json'
-import LineController from '../controllers/LineController';
-import LineMiddleware from '../middleware/LineMiddleware';
-import ErrorMiddleware from '../middleware/ErrorMiddleware';
+import LineController from '@controllers/LineController';
+import LineMiddleware from '@middleware/LineMiddleware';
+import ErrorMiddleware from '@middleware/ErrorMiddleware';
 
 interface IError {
   name: string;

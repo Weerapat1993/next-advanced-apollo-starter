@@ -17,7 +17,14 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "baseUrl": ".",
+    "paths": {
+      "@components/*": ["src/components/*"],
+      "@controllers/*": ["app/controllers/*"],
+      "@middleware/*": ["app/middleware/*"],
+      "@utils/*": ["src/utils/*"]
+    }
   },
   "exclude": [
     "node_modules"
