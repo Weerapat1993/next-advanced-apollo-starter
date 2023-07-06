@@ -23,6 +23,8 @@
       "@components/*": ["src/components/*"],
       "@controllers/*": ["app/controllers/*"],
       "@middleware/*": ["app/middleware/*"],
+      "@database/*": ["app/database/*"],
+      "@models/*": ["app/models/*"],
       "@utils/*": ["src/utils/*"]
     }
   },

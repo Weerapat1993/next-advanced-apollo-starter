@@ -2,10 +2,15 @@ import 'dotenv/config'
 import serverless from 'serverless-http';
 import express, { Router } from 'express';
 import type { Application, Request, Response, NextFunction } from 'express';
-import packageJson from '../../package.json'
+import bodyParser from 'body-parser';
+import cookieParser from 'cookie-parser'
+import '@database/mongodb'
 import LineController from '@controllers/LineController';
+import ProductController from '@controllers/ProductController';
 import LineMiddleware from '@middleware/LineMiddleware';
 import ErrorMiddleware from '@middleware/ErrorMiddleware';
+import packageJson from '../../package.json'
+
 
 interface IError {
   name: string;
@@ -16,6 +21,9 @@ interface IError {
 
 // Create a new Express application.
 const api: Application = express();
+api.use(bodyParser.json())
+api.use(bodyParser.urlencoded({ extended: false }))
+api.use(cookieParser())
 const router = Router();
 
 router.get('/version', (req: Request, res: Response) => res.status(200).json({
@@ -23,6 +31,12 @@ router.get('/version', (req: Request, res: Response) => res.status(200).json({
 }));
 
 router.post('/webhook', LineMiddleware, LineController);
+
+router.get('/products', ProductController.getProducts);
+router.get('/products/:id', ProductController.getProductBySku);
+router.post('/products/create', ProductController.createProduct);
+router.put('/products/update', ProductController.updateProductBySku);
+router.delete('/products/delete/:sku', ProductController.deleteProductBySku);
 
 // catch 404 and forward to error handler
 router.use((req: Request, res: Response, next: NextFunction) => {
