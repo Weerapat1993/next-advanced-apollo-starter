@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0-alpha.10 (2023-07-06)
+
+
+### Features
+
+* **NEX-9:** add crud product in api ([#15](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/15)) ([469b653](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/469b6535b912bacc0d60b1e19cde0cd04f5b660a))
+
 ## 1.2.0-alpha.9 (2023-07-05)
 
 
