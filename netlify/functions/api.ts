@@ -51,3 +51,7 @@ router.use(ErrorMiddleware);
 api.use('/api/', router);
 
 export const handler = serverless(api);
+
+export const config = {
+  runtime: 'experimental-edge'
+}

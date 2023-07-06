@@ -26,4 +26,8 @@ const IndexPage: NextPage = () => {
   );
 };
 
+export const config = {
+  runtime: 'nodejs'
+}
+
 export default IndexPage;

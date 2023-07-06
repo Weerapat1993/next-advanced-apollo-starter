@@ -25,7 +25,8 @@
       "@middleware/*": ["app/middleware/*"],
       "@database/*": ["app/database/*"],
       "@models/*": ["app/models/*"],
-      "@utils/*": ["src/utils/*"]
+      "@utils/*": ["src/utils/*"],
+      "@styles/*": ["src/styles/*"]
     }
   },
   "exclude": [
