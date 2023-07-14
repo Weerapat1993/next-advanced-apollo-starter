@@ -1,16 +1,23 @@
 name: Build Version
 
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        type: choice
-        description: What version you want?
-        options:
-          - alpha
-          - patch
-          - minor
-          - major
+  push:
+    branches:
+      - master
+      - develop
+  pull_request:
+    branches: ["main", "develop"]
+
+  # workflow_dispatch:
+  #   inputs:
+  #     version:
+  #       type: choice
+  #       description: What version you want?
+  #       options:
+  #         - alpha
+  #         - patch
+  #         - minor
+  #         - major
 
 permissions:
   contents: write
@@ -21,8 +28,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Run Version
-        run: echo "Run ${{ github.event.inputs.version }} Version."
+      # - name: Run Version
+      #   run: echo "Run ${{ github.event.inputs.version }} Version."
 
       - name: Checkout code
         uses: actions/checkout@v3
@@ -30,7 +37,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: "12.13.0"
+          node-version: "20.3.1"
 
       - name: Cache packages
         uses: actions/cache@v3
@@ -44,11 +51,34 @@ jobs:
         run: npm ci
 
       - name: Start Bump Version
-        if: github.ref == 'refs/heads/master'
+        # Semantic Release
+        uses: cycjimmy/semantic-release-action@v3
+        id: semantic
+        with:
+          branches: |
+            [
+              '+([0-9])?(.{+([0-9]),x}).x',
+              'master',
+              'next',
+              'next-major',
+              {
+                name: 'develop',
+                prerelease: true
+              }
+            ]
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ env.NPM_TOKEN }}
+      - name: Version Release
+        if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          npm run release:${{ github.event.inputs.version }}
-          git push --follow-tags origin master
+          echo ${{ steps.semantic.outputs.new_release_version }}
+          echo ${{ steps.semantic.outputs.new_release_major_version }}
+          echo ${{ steps.semantic.outputs.new_release_minor_version }}
+          echo ${{ steps.semantic.outputs.new_release_patch_version }}
+        
+        # run: |
+        #   git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        #   git config --global user.name "github-actions[bot]"
+        #   npm run release:${{ github.event.inputs.version }}
+        #   git push --follow-tags origin master
