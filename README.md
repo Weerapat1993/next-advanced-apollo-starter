@@ -1,5 +1,5 @@
 <h1 align="center">
-next-advanced-apollo-starter
+next-apollo-starter
 </h1>
 
 <h4 align="center">
