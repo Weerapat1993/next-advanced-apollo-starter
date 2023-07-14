@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## 1.2.0 (2023-07-14)
+
+
+### Features
+
+* **NEX-10:** use Edge Functions ([#16](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/16)) ([bdc5d8a](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/bdc5d8afbc36a65dd4a0b4a0ca5746bfe80007fd))
+
 ## 1.2.0-alpha.10 (2023-07-06)
 
 
