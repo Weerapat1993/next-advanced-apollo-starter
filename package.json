@@ -1,6 +1,6 @@
 {
   "name": "next-advanced-apollo-starter",
-  "version": "1.2.0-alpha.10",
+  "version": "1.2.0-alpha.11",
   "license": "MIT",
   "scripts": {
     "dev": "next dev",

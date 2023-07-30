@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [1.2.0-alpha.11](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/compare/v1.2.0-alpha.10...v1.2.0-alpha.11) (2023-07-30)
+
+
+### Features
+
+* **NEX-10:** use Edge Functions ([#16](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/16)) ([bdc5d8a](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/bdc5d8afbc36a65dd4a0b4a0ca5746bfe80007fd))
+* **NEX-11:** Update README.md ([#17](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/17)) ([46c412a](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/46c412a40df6dcb466abaafb0e2076c1ec206b3c))
+* Update Github Actions use semantic version ([575a19a](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/575a19a303d4ac86bdbf4ebd00cf6434e573eb2a))
+
+
+### Bug Fixes
+
+* **NEX-11:** remove npm token ([#18](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/issues/18)) ([b0d3aab](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/b0d3aaba88258b66ae7829e2f1594ccad08710c9))
+* **NEX-11:** revert to standard-version ([2672887](https://github.com/Top-Weerapat-Mungmee/next-advanced-apollo-starter/commit/2672887563451ed6839bcb1e9b1ea4c372e8cbbe))
+
 ## 1.2.0-alpha.10 (2023-07-06)
 
 
