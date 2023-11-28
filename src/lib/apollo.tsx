@@ -68,7 +68,7 @@ const createApolloClient = (ctx?: GetServerSidePropsContext) => {
   });
 
   const restLink = new RestLink({ 
-    uri: "https://swapi.dev/api/"
+    uri: "https://apps.maxion.gg/api"
   });
 
   return new ApolloClient({
