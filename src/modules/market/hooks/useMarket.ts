@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/client";
 import { MARKET_LIST } from "../graphql/query";
 
-export const useMarket = ({ keyword, server, category, sort }) => {
+export const useMarket = ({ keyword, server, category, refine, sort }) => {
   const { data, loading, error } = useQuery(MARKET_LIST, {
     variables: {
       server, 
@@ -9,10 +9,14 @@ export const useMarket = ({ keyword, server, category, sort }) => {
     }, 
     context: { 
       clientName: 'rest'
-    } 
+    },
+    ssr: false
   });
   
-  let list = (data?.getMarket || []).filter(item => item.nft.nameEnglish.includes(keyword))
+  let list = (data?.getMarket || []).filter(item => item.nft.nameEnglish.toLowerCase().includes(keyword.toLowerCase()) || item.nft.id.toString().includes(keyword.toLowerCase()))
+  if(refine) {
+    list = list.filter(item => item.nft.refine >= refine)
+  }
   switch(sort) {
     case 'asc':
       break
