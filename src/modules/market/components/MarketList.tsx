@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { Fragment, useState } from 'react'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -9,13 +9,9 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import styled from 'styled-components'
 import { useMarket } from "../hooks/useMarket"
+import ProductItem from './ProductItem';
+import Grid from '@mui/material/Grid';
 
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  background-color: #2196F3;
-  padding: 10px;
-`
 
 const FormHorizontal = styled.div`
   display: flex;
@@ -24,30 +20,23 @@ const FormHorizontal = styled.div`
   margin: 10px;
 `
 
-const Text = styled.div`
-  color: ${props => props.color};
-`
-
-const GridItem = styled.div`
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 16px;
-  text-align: center;
-`
-
 const MarketList = () => {
   const [server, setServer] = useState(2);
   const [category, setCategory] = useState('');
   const [keyword, setKeyword] = useState('');
+  const [refine, setRefine] = useState(0);
   const [sort, setSort] = useState('asc');
-  const { data, loading } = useMarket({ server, keyword, category, sort })
+  const { data, loading } = useMarket({ server, keyword, category, refine, sort })
 
   const handleChangeServer = (event: React.ChangeEvent<HTMLInputElement>) => {
     setServer((event.target as HTMLInputElement).value);
   };
   const handleChangeCategory = (event: SelectChangeEvent) => {
     setCategory((event.target as HTMLInputElement).value);
+    setRefine(0);
+  };
+  const handleChangeRefine = (event: SelectChangeEvent) => {
+    setRefine((event.target as HTMLInputElement).value);
   };
   const handleChangeSort = (event: SelectChangeEvent) => {
     setSort((event.target as HTMLInputElement).value);
@@ -55,6 +44,15 @@ const MarketList = () => {
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setKeyword((event.target as HTMLInputElement).value);
   };
+
+  let isMenuRefine = false
+  switch (category) {
+    case 'headgear':
+    case 'weapon':
+    case 'armor':
+    case 'shadowgear':
+      isMenuRefine = true
+  } 
 
   return (
     <Box>
@@ -99,6 +97,27 @@ const MarketList = () => {
             </Select>
           </FormControl>
         </Box>
+        {isMenuRefine ? (
+          <Fragment>
+            &nbsp; &nbsp;
+            <Box sx={{ minWidth: 100 }}>
+              <FormControl variant="standard" fullWidth>
+                <Select
+                  id="form-refine"
+                  value={refine}
+                  label="Refine"
+                  onChange={handleChangeRefine}
+                  displayEmpty
+                  size="small"
+                >
+                  {Array.from(Array(11).keys()).map((key) => (
+                    <MenuItem value={key}><em>+{key}</em></MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Box>
+          </Fragment>
+        ) : null}
         &nbsp; &nbsp;
         <Box sx={{ minWidth: 200 }}>
           <FormControl variant="standard" fullWidth>
@@ -118,62 +137,22 @@ const MarketList = () => {
           </FormControl>
         </Box>
       </FormHorizontal>
-      <div>
+      <Box sx={{ flexGrow: 1, padding: '20px', background: '#111' }}>
         {loading ? (
           <div>Loading ...</div>
         ) : (
-          <Grid>
+          <Grid container spacing={{ xs: 2 }}>
             {data.map(item => {
               const key = item.id
-              const imgUrl = `https://www.divine-pride.net/img/items/collection/iRO/${item.nft.nameid}`
-              const {
-                refine,
-                nameEnglish,
-                option0Text,
-                option1Text,
-                option2Text,
-                option3Text,
-                option4Text,
-                card0Name,
-                card1Name,
-                card2Name,
-                card3Name,
-              } = item.nft
-              const isNoCard = !card0Name && !card1Name && !card2Name && !card3Name
               return (
-                <GridItem key={key}>
-                  <img src={imgUrl} width={75} height={100} alt={nameEnglish} />
-                  <div>
-                    <b>{refine > 0 ? `+${refine} ` : ' '}{nameEnglish}</b>
-                    {option0Text ? (
-                      <div>
-                        <ul>
-                          <li><Text color='green'>{option0Text}</Text></li>
-                          <li><Text color='green'>{option1Text}</Text></li>
-                          <li><Text color='red'>{option2Text}</Text></li>
-                          <li><Text color='red'>{option3Text}</Text></li>
-                          <li><Text color='red'>{option4Text}</Text></li>
-                        </ul>
-                      </div>
-                    ) : null}
-                    
-                    <div>{item.price} ION</div>
-                    {!isNoCard ? (
-                      <p>
-                        <div>Card 1: {card0Name}</div>
-                        <div>Card 2: {card1Name}</div>
-                        <div>Card 3: {card2Name}</div>
-                        <div>Card 4: {card3Name}</div>
-                      </p>
-                    ) : null}
-                  </div>
-                </GridItem>
+                <Grid key={key} item xs={6} sm={4} md={3} lg={2}>
+                  <ProductItem key={key} item={item} />
+                </Grid>
               )
             })}
-            {/* <pre>{JSON.stringify(data, null, '  ')}</pre> */}
           </Grid>
         )}
-      </div>
+      </Box>
     </Box>
   )
 }
